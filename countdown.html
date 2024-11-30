@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.bg-img{
+    background-image: url('https://www.internationalapparelandtextilefair.com/assets/images/BG.jpg');
+        background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.timer {
+    font-family: 'Montserrat';
+  color: #ffffff;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.timer h1 {
+  font-family: 'Montserrat';
+  letter-spacing: .125rem;
+  text-transform: uppercase;
+  padding:0px !important;
+}
+#headline{
+    color:#df3562;
+}
+.timer ul{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#countdown li {
+    font-family: 'Montserrat';
+  display: inline-block;
+  /*font-size: 20px;*/
+  list-style-type: none;
+  padding: 0px 5px;
+  text-transform: uppercase;
+}
+
+#countdown li span {
+    font-family: 'Montserrat';
+  display: block;
+  
+}
+
+@media all and (max-width: 768px) {
+ .timer  h1 {
+     font-family: 'Montserrat';
+    font-size: calc(1.5rem * var(--smaller));
+  }
+  
+ #countdown li {
+     font-family: 'Montserrat';
+    /*font-size:12px;
+    padding:2px;*/
+    }
+  
+  #countdown li span {
+      font-family: 'Montserrat';
+    font-size: calc(3.375rem * var(--smaller));
+  }
+}
+@media only screen and (max-width: 360px) {
+    .timer-bg{
+        background-image: url('https://www.internationalapparelandtextilefair.com/assets/images/Timer box.png');
+            background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width:40px !important;
+      height:40px !important;
+    }
+    .timer-empty{
+        background-image: url('https://www.internationalapparelandtextilefair.com/assets/images/dots1.png');
+            background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width:0px;
+      height:28px;
+    }
+    .timer-timer{
+        font-size:12px !important;
+        padding-top:10px;
+    }
+    .timer-text{
+        font-size:7px !important;
+        color:#f3eae7cf;
+    }
+}
+@media screen and (min-device-width: 361px) and (max-device-width: 480px) { 
+    .timer-bg{
+        background-image: url('https://www.internationalapparelandtextilefair.com/assets/images/Timer box.png');
+            background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width:60px;
+      height:60px;
+    }
+    .timer-empty{
+        background-image: url('https://www.internationalapparelandtextilefair.com/assets/images/dots.png');
+            background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width:2px;
+      height:40px;
+    }
+    .timer-timer{
+        font-size:20px;
+        padding-top:10px;
+    }
+    .timer-text{
+        font-size:10px !important;
+        color:#f3eae7cf;
+    }
+}
+@media only screen and (min-width: 481px) {
+    .timer-bg{
+        background-image: url('https://www.internationalapparelandtextilefair.com/assets/images/Timer box.png');
+            background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width:130px;
+      height:130px;
+    }
+    .timer-empty{
+        background-image: url('https://www.internationalapparelandtextilefair.com/assets/images/dots.png');
+            background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width:2px;
+      height:60px;
+    }
+    .timer-timer{
+        font-size:45px !important;
+        padding-top:20px;
+    }
+    .timer-text{
+        font-size:14px !important;
+        color:#f3eae7cf;
+    }
+}
+</style>
+</head>
+<body class="bg-img">
+<div class="timer">
+  <h1 id="headline">Count Down</h1>
+  <div id="countdown">
+    <ul>
+      <li class="timer-bg"><span class="timer-timer" id="days1"></span><span class="timer-text">days</span></li>
+      <li class="timer-empty"><span class="colon" id="colon"></span></li>
+      <li class="timer-bg"><span class="timer-timer" id="hours1"></span><span class="timer-text">Hours</span></li>
+      <li class="timer-empty"><span class="colon" id="colon"></span></li>
+      <li class="timer-bg"><span class="timer-timer" id="minutes1"></span><span class="timer-text">Minutes</span></li>
+      <li class="timer-empty"><span class="colon" id="colon"></span></li>
+      <li class="timer-bg"><span class="timer-timer" id="seconds1"></span><span class="timer-text">Seconds</span></li>
+	      </ul>
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+(function () {
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+  //I'm adding this section so I don't have to keep updating this pen every year :-)
+  //remove this if you don't need it
+  let today = new Date(),
+      dd = String(today.getDate()).padStart(2, "0"),
+      mm = String(today.getMonth() + 1).padStart(2, "0"),
+      yyyy = today.getFullYear(),
+      nextYear = yyyy + 1,
+      dayMonth = "05/20/",
+      birthday = dayMonth + yyyy;  
+  today = mm + "/" + dd + "/" + yyyy;
+  if (today > birthday) {
+    birthday = dayMonth + nextYear;
+  }
+  //end  
+  const countDown = new Date(birthday).getTime(),
+      x = setInterval(function() {
+        const now = new Date().getTime(),
+              distance = countDown - now; 
+              let days1 = Math.floor(distance / (day));
+              let hours1 = Math.floor((distance % (day)) / (hour));
+              let minutes1 = Math.floor((distance % (hour)) / (minute));
+              let seconds1 = Math.floor((distance % (minute)) / second);
+              
+              if(days1<10){
+                  days1 = '0'+days1;
+              }
+              if(hours1<10){
+                  hours1 = '0'+hours1;
+              }
+              if(minutes1<10){
+                  minutes1 = '0'+minutes1;
+              }
+              if(seconds1<10){
+                  seconds1 = '0'+seconds1;
+              }
+              
+              
+              document.getElementById("days1").innerText = days1,
+              document.getElementById("hours1").innerText = hours1,
+              document.getElementById("minutes1").innerText = minutes1,
+              document.getElementById("seconds1").innerText = seconds1;
+        //do something later when date is reached
+        if (distance < 0) {          document.getElementById("headline").innerText = "FAIR IS LIVE!";          document.getElementById("countdown").style.display = "none";          document.getElementById("content").style.display = "block";
+          clearInterval(x);
+        }
+        //seconds
+      }, 0)
+  }());
+</script>
+</html>
